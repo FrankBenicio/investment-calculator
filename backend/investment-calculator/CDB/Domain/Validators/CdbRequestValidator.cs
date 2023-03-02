@@ -14,8 +14,8 @@ namespace Cdb.Domain.Validators
 
             RuleFor(x => x.Month)
                 .NotNull()
-                .GreaterThan(0)
-                .WithMessage("Por favor, informe o prazo que seu dinheiro ficará investido.");
+                .GreaterThan(1)
+                .WithMessage("Por favor, informe no mínimo 2 meses.");
         }
     }
 }

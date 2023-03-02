@@ -42,8 +42,8 @@ namespace Cdb.Histories
             double value = cdbRequest.InvestmentValue;
             int month = cdbRequest.Month;
 
-            var tbValue = 108 / 100;
-            var cdiValue = 0.9 / 100;
+            double tbValue = 108D / 100;
+            double cdiValue = 0.9 / 100;
 
             for (int i = 0; i < month; i++)
             {

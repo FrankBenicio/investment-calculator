@@ -25,10 +25,10 @@ namespace CdbTests.HistoriesTests
             var result = await calculateCDB.Execute(cdbRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(1042.78, result.NetTotalAmount);
-            Assert.Equal(12.42, result.InterestAmount);
+            Assert.Equal(1046.29, result.NetTotalAmount);
+            Assert.Equal(13.43, result.InterestAmount);
             Assert.Equal(1000, result.AmountInvested);
-            Assert.Equal(1055.2, result.GrossTotalAmount);
+            Assert.Equal(1059.72, result.GrossTotalAmount);
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace CdbTests.HistoriesTests
             var result = await calculateCDB.Execute(cdbRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(1090.76, result.NetTotalAmount);
-            Assert.Equal(22.69, result.InterestAmount);
+            Assert.Equal(1098.43, result.NetTotalAmount);
+            Assert.Equal(24.6, result.InterestAmount);
             Assert.Equal(1000, result.AmountInvested);
-            Assert.Equal(1113.45, result.GrossTotalAmount);
+            Assert.Equal(1123.03, result.GrossTotalAmount);
         }
 
         [Fact]
@@ -67,10 +67,10 @@ namespace CdbTests.HistoriesTests
             var result = await calculateCDB.Execute(cdbRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(1197.58, result.NetTotalAmount);
-            Assert.Equal(42.2, result.InterestAmount);
+            Assert.Equal(1215.23, result.NetTotalAmount);
+            Assert.Equal(45.96, result.InterestAmount);
             Assert.Equal(1000, result.AmountInvested);
-            Assert.Equal(1239.79, result.GrossTotalAmount);
+            Assert.Equal(1261.19, result.GrossTotalAmount);
         }
 
         [Fact]
@@ -88,10 +88,10 @@ namespace CdbTests.HistoriesTests
             var result = await calculateCDB.Execute(cdbRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(1213.3, result.NetTotalAmount);
-            Assert.Equal(37.64, result.InterestAmount);
+            Assert.Equal(1232.43, result.NetTotalAmount);
+            Assert.Equal(41.01, result.InterestAmount);
             Assert.Equal(1000, result.AmountInvested);
-            Assert.Equal(1250.94, result.GrossTotalAmount);
+            Assert.Equal(1273.44, result.GrossTotalAmount);
         }
 
         [Fact]
@@ -111,8 +111,8 @@ namespace CdbTests.HistoriesTests
 
             validator.RuleFor(x => x.Month)
                 .NotNull()
-                .GreaterThan(0)
-                .WithMessage("Por favor, informe o prazo que seu dinheiro ficará investido.");
+                .GreaterThan(1)
+                .WithMessage("Por favor, informe no mínimo 2 meses.");
 
             var calculateCDB = new CalculateCDB(validator);
 
@@ -124,7 +124,7 @@ namespace CdbTests.HistoriesTests
             var errors2 = validationException.Errors.ToList()[1];
 
             Assert.Equal("Por favor, informe o valor de investimento.", errors1.ErrorMessage);
-            Assert.Equal("Por favor, informe o prazo que seu dinheiro ficará investido.", errors2.ErrorMessage);
+            Assert.Equal("Por favor, informe no mínimo 2 meses.", errors2.ErrorMessage);
 
         }
 
@@ -145,8 +145,8 @@ namespace CdbTests.HistoriesTests
 
             validator.RuleFor(x => x.Month)
                 .NotNull()
-                .GreaterThan(0)
-                .WithMessage("Por favor, informe o prazo que seu dinheiro ficará investido.");
+                .GreaterThan(1)
+                .WithMessage("Por favor, informe no mínimo 2 meses.");
 
             var calculateCDB = new CalculateCDB(validator);
 
@@ -176,8 +176,8 @@ namespace CdbTests.HistoriesTests
 
             validator.RuleFor(x => x.Month)
                 .NotNull()
-                .GreaterThan(0)
-                .WithMessage("Por favor, informe o prazo que seu dinheiro ficará investido.");
+                .GreaterThan(1)
+                .WithMessage("Por favor, informe no mínimo 2 meses.");
 
             var calculateCDB = new CalculateCDB(validator);
 
@@ -187,7 +187,7 @@ namespace CdbTests.HistoriesTests
 
             var errors1 = validationException.Errors.ToList()[0];
 
-            Assert.Equal("Por favor, informe o prazo que seu dinheiro ficará investido.", errors1.ErrorMessage);
+            Assert.Equal("Por favor, informe no mínimo 2 meses.", errors1.ErrorMessage);
 
         }
     }
