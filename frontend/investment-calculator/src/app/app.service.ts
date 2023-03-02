@@ -12,6 +12,14 @@ export class AppService {
         })  
       }          
       postData(data : any){  
-        return this.http.post(this.rootURL + '/cdb/calculate',data);  
+        return this.http.post<CdbResponse>(this.rootURL + '/cdb/calculate',data);  
       }   
 }
+
+interface CdbResponse {
+  grossTotalAmount: number;
+  amountInvested: number;
+  interestAmount: number;
+  netTotalAmount: number;
+}
+

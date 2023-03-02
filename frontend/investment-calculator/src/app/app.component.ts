@@ -8,18 +8,25 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { HttpResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  cdbResponse: any;
+
   form: FormGroup = new FormGroup({
     investmentValue: new FormControl(''),
     month: new FormControl(''),
   });
   submitted = false;
+
+  grossTotalAmount: number = 0;
+  amountInvested: number= 0;
+  interestAmount: number= 0;
+  netTotalAmount: number= 0;
 
   constructor(private formBuilder: FormBuilder, private AppService: AppService) { }
 
@@ -27,7 +34,7 @@ export class AppComponent {
     this.form = this.formBuilder.group(
       {
         investmentValue: ['', Validators.required],
-        month: ['', Validators.required]
+        month: ['', [Validators.min(2), Validators.required]]
       },
     );
   }
@@ -45,6 +52,13 @@ export class AppComponent {
 
     console.log(JSON.stringify(this.form.value, null, 2));
     this.AppService.postData(this.form.value)
-      .subscribe((data) => { this.cdbResponse = data });
+      .subscribe((data) => { 
+        this.grossTotalAmount = data.grossTotalAmount; 
+        this.amountInvested = data.amountInvested; 
+        this.interestAmount = data.interestAmount; 
+        this.netTotalAmount = data.netTotalAmount; 
+      
+        console.log(this.grossTotalAmount);
+      });
   }
 }
